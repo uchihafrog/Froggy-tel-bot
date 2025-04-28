@@ -5,7 +5,7 @@ const meta = {
   aliases: ["animememe"],
   prefix: "both",
   version: "1.0.0",
-  author: "AjiroDesu",
+  author: "ShawnDesu",
   description: "Sends a random anime meme.",
   guide: [],
   cooldown: 5,

@@ -2,7 +2,7 @@ const meta = {
   name: "help",
   aliases: ["h"],
   version: "0.0.1",
-  author: "AjiroDesu",
+  author: "ShawnDesu",
   description: "Displays help information for commands.",
   guide: "<command|page|all>",
   cooldown: 5,

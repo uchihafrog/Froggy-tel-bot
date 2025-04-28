@@ -2,7 +2,7 @@ const meta = {
   name: "welcome",
   description: "Handles new members joining the group and sends welcome messages.",
   type: "welcome",
-  author: "Ajirodesu"
+  author: "ShawnDesu"
 };
 
 async function onStart({ bot, msg }) {

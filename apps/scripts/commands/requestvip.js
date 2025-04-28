@@ -2,7 +2,7 @@ const meta = {
   name: "requestvip",
   aliases: [],
   version: "1.0.0",
-  author: "AjiroDesu",
+  author: "ShawnDesu",
   description: "Request VIP access",
   guide: ["<your message>"],
   cooldown: 100,

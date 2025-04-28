@@ -11,7 +11,7 @@ const meta = {
   description: "Admin management command",
   cooldown: 0,
   guide: "[add/list/remove]",
-  author: "AjiroDesu"
+  author: "ShawnDesu"
 };
 
 // Command initialization

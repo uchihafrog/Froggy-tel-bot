@@ -2,7 +2,7 @@ const meta = {
   name: "goodbye",
   description: "Handles members leaving the group and sends goodbye messages.",
   type: "leave",
-  author: "AjiroDesu"
+  author: "ShawnDesu"
 };
 
 async function onStart({ bot, msg }) {

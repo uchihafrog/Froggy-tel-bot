@@ -2,7 +2,7 @@ const meta = {
   name: "uptime",
   aliases: ["up"],
   version: "1.0.0",
-  author: "AjiroDesu",
+  author: "ShawnDesu",
   description: "Shows the bot's uptime with a personalized greeting.",
   prefix: "both",
   guide: [""],

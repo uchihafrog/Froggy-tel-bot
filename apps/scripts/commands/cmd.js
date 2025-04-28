@@ -27,7 +27,7 @@ const meta = {
   aliases: [],
   prefix: "both",
   version: "1.0.0",
-  author: "AjiroDesu",
+  author: "ShawnDesu",
   description: "Manage commands: install, delete, load, unload, loadall",
   guide: [
     "install <sourceFilePath> - Installs a new command",
