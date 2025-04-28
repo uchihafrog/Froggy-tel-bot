@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { scriptsUtils } = require('./scriptsUtils.js')
+const { install } = require('./system/install');
+const { scriptsUtils } = require('./utility/scriptsUtils.js')
 
 // Load the JSON files with absolute paths
 const settings = require(path.join(process.cwd(), "setup/settings.json"));
@@ -19,7 +20,9 @@ global.chaldea = {
   events: new Map()
 };
 
+global.scripts = scriptsUtils;
+
 scriptsUtils();
 // Require the login module and call its function
-const { login } = require("./login");
+const { login } = require("./system/login");
 login();

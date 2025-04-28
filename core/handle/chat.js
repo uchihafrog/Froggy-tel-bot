@@ -1,4 +1,4 @@
-exports.chat = async function({ bot, message, msg, chatId, args, db }) {
+exports.chat = async function({ bot, message, msg, chatId, args }) {
   const { commands } = global.chaldea;
 
   // Iterate over all registered commands that implement an onChat handler.
@@ -11,8 +11,7 @@ exports.chat = async function({ bot, message, msg, chatId, args, db }) {
           message,
           msg,
           chatId,
-          args,
-          db
+          args
         });
         if (shouldContinue === false) {
           break;

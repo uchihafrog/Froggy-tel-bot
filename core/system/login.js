@@ -14,7 +14,7 @@ const login = () => {
 
   // Create bot instances for each token
   const bots = tokens.map(token => new TelegramBot(token, { polling: true }));
-  const { listen } = require('./listen.js');
+  const { listen } = require('../listen.js');
   // Attach handlers to each bot
   bots.forEach(bot => listen(bot));
 

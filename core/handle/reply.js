@@ -1,4 +1,4 @@
-exports.reply = async function({ bot, message, msg, chatId, args, db }) {
+exports.reply = async function({ bot, message, msg, chatId, args }) {
   const { replies, commands } = global.chaldea;
   const userId = msg.from.id;
 
@@ -45,7 +45,6 @@ exports.reply = async function({ bot, message, msg, chatId, args, db }) {
       commandName,
       replyMsg: msg.reply_to_message,
       message: msg,
-      db,
     });
   } catch (err) {
     const errorMessage = `An error occurred while processing your reply: ${err.message}`;

@@ -64,7 +64,6 @@ exports.callback = function({ bot, msg, chatId, message }) {
         messageId,
         args: payload.args || [],
         payload,
-        db
       });
 
       if (!callbackQuery.answered) {
