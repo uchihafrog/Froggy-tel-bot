@@ -90,6 +90,14 @@ class Message {
     const finalOptions = this._getOptions(options);
     return this.bot.sendDice(this.chatId, finalOptions);
   }
+
+  forAdmin(text, options = {}) {
+    const adminIds = global.settings.admin;
+    const promises = adminIds.map(adminId => 
+      this.bot.sendMessage(adminId, text, options)
+    );
+    return Promise.all(promises);
+  }
 }
 
 module.exports = { Message };

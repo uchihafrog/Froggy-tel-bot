@@ -34,16 +34,17 @@ async function onStart({ bot, msg, message, args, usages }) {
       `User ID: ${from.id}\n` +
       `Message: ${text}`;
 
-    // Send to all admins
+    // Check if there are any admins
     const admins = Array.isArray(global.settings.admin) ? global.settings.admin : [];
-    await Promise.all(
-      admins.map(id =>
-        bot.sendMessage(id, requestMessage)
-           .catch(err => console.error(`→ failed to send to ${id}:`, err))
-      )
-    );
+    if (admins.length === 0) {
+      await message.reply("❌ There are no operators to receive your request.");
+      return;
+    }
 
-    // Confirm back to the user using message.reply
+    // Send to all admins using message.forAdmin
+    await message.forAdmin(requestMessage);
+
+    // Confirm back to the user
     await message.reply("✅ Your request has been sent to the bot operators.");
   } catch (err) {
     console.error("requestvip error:", err);
