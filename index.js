@@ -1,17 +1,4 @@
 const { spawn } = require("child_process");
-const express = require("express");
-const path = require("path");
-
-const app = express();
-const port = process.env.PORT || 3000;
-
-app.get('/', (req, res) => {
-    res.send('Chaldea Bot is running!');
-});
-
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Chaldea Bot server is running on port ${port}`);
-});
 
 let botProcess = null;
 

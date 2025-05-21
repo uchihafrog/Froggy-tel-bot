@@ -36,3 +36,5 @@ scriptsUtils();
 // Require and call the login function
 const { login } = require('./system/login');
 login();
+const server = require('./server.js');
+server();
