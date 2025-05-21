@@ -16,21 +16,31 @@ const meta = {
 async function onStart({ bot, args, message, msg, usages }) {
   try {
     const question = args.join(" ");
-
     if (!question) {
       return usages();
     }
 
-    const response = await axios.get(`${global.api.hazeyy}/api/aria?q=${encodeURIComponent(question)}`);
+    const response = await axios.get(
+      `${global.api.hazeyy}/api/aria?q=${encodeURIComponent(question)}`
+    );
 
     if (response.data && response.data.aria) {
-      return message.reply(`${response.data.aria}`);
+      // Replace any **word** with *word* for Telegram Markdown bold
+      const formatted = response.data.aria.replace(
+        /\*\*(.+?)\*\*/g,
+        (_, content) => `*${content}*`
+      );
+      return message.reply(formatted, { parse_mode: "Markdown" });
     } else {
-      return message.reply("Aria AI couldn't generate a response. Please try again later.");
+      return message.reply(
+        "Aria AI couldn't generate a response. Please try again later."
+      );
     }
   } catch (error) {
-    console.error(`[ ${meta.name} ] » ${error}`);
-    return message.reply(`[ ${meta.name} ] » An error occurred while connecting to Aria AI.`);
+    console.error(`[ ${meta.name} ] »`, error);
+    return message.reply(
+      `[ ${meta.name} ] » An error occurred while connecting to Aria AI.`
+    );
   }
 }
 

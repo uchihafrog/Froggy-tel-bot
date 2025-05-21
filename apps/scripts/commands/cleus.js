@@ -1,3 +1,4 @@
+// cleus.js
 const axios = require('axios');
 
 const meta = {
@@ -14,23 +15,19 @@ const meta = {
 };
 
 async function onStart({ bot, args, message, msg, usages }) {
+  const question = args.join(" ");
+  if (!question) return usages();
+
   try {
-    const question = args.join(" ");
+    const url = `${global.api.hazeyy}/api/cleus?message=${encodeURIComponent(question)}`;
+    const { data } = await axios.get(url);
+    const raw = data.cleus || "Cleus AI couldn't generate a response. Please try again later.";
 
-    if (!question) {
-      return usages();
-    }
-
-    const response = await axios.get(`${global.api.hazeyy}/api/cleus?message=${encodeURIComponent(question)}`);
-
-    if (response.data && response.data.cleus) {
-      return message.reply(`${response.data.cleus}`);
-    } else {
-      return message.reply("Cleus AI couldn't generate a response. Please try again later.");
-    }
-  } catch (error) {
-    console.error(`[ ${meta.name} ] » ${error}`);
-    return message.reply(`[ ${meta.name} ] » An error occurred while connecting to Cleus AI.`);
+    const formatted = raw.replace(/\*\*(.+?)\*\*/g, (_, ct) => `*${ct}*`);
+    await message.reply(formatted, { parse_mode: "Markdown" });
+  } catch (err) {
+    console.error("[cleus] »", err);
+    await message.reply("❌ An error occurred while connecting to Cleus AI.");
   }
 }
 

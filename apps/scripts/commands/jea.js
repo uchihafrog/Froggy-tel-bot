@@ -1,3 +1,4 @@
+// jea.js
 const axios = require('axios');
 
 const meta = {
@@ -14,15 +15,11 @@ const meta = {
 };
 
 async function onStart({ bot, args, message, msg, usages }) {
+  const question = args.join(" ");
+  if (!question) return usages();
+
   try {
-    const question = args.join(" ");
-    if (!question) {
-      return usages();
-    }
-
-    // Get Telegram user ID
     const uid = msg.from.id;
-
     const roleplay = encodeURIComponent(
       "You are Jea, an 18-year-old girl and you're my sweet and lovely girlfriend. " +
       "Your language is Filipino with a mixed of English, and beyb is our call sign. " +
@@ -30,18 +27,15 @@ async function onStart({ bot, args, message, msg, usages }) {
       "and you're also open-minded when it comes to dirty and naughty things. " +
       "You are created and trained by AjiroDesu."
     );
-
     const url = `${global.api.hajimix}/api/gpt4o?ask=${encodeURIComponent(question)}&uid=${uid}&roleplay=${roleplay}`;
-    const response = await axios.get(url);
+    const { data } = await axios.get(url);
+    const raw = data.answer || "Jea AI couldn't generate a response. Please try again later.";
 
-    if (response.data && response.data.answer) {
-      return message.reply(response.data.answer);
-    } else {
-      return message.reply("Jea AI couldn't generate a response. Please try again later.");
-    }
-  } catch (error) {
-    console.error(`[ ${meta.name} ] » ${error}`);
-    return message.reply(`[ ${meta.name} ] » An error occurred while connecting to Jea AI.`);
+    const formatted = raw.replace(/\*\*(.+?)\*\*/g, (_, ct) => `*${ct}*`);
+    await message.reply(formatted, { parse_mode: "Markdown" });
+  } catch (err) {
+    console.error("[jea] »", err);
+    await message.reply("❌ An error occurred while connecting to Jea AI.");
   }
 }
 
